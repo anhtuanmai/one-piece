@@ -24,3 +24,4 @@ codecov
 codecov.yaml
 *.sh
 /.idea/deviceManager.xml
+/build-logic/.kotlin/sessions/*.salive
