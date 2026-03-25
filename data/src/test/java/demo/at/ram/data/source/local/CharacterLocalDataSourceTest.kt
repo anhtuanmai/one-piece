@@ -4,23 +4,22 @@ import androidx.room.Room
 import demo.at.ram.data.source.local.dao.CharacterDao
 import demo.at.ram.data.source.local.entity.CharacterEntity
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
+import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
 import org.robolectric.RuntimeEnvironment
-import tech.apter.junit.jupiter.robolectric.RobolectricExtension
 import kotlin.random.Random
 
-@ExtendWith(RobolectricExtension::class)
+@RunWith(org.robolectric.RobolectricTestRunner::class)
 class CharacterLocalDataSourceTest {
 
     private lateinit var database: AppDatabase
     private lateinit var characterDao: CharacterDao
     private lateinit var localDS: CharacterLocalDataSource
 
-    @BeforeEach
+    @Before
     fun setupDatabase() {
         database = Room.inMemoryDatabaseBuilder(
             RuntimeEnvironment.getApplication(),
@@ -57,7 +56,7 @@ class CharacterLocalDataSourceTest {
         assertEquals(expectedCharacters, characters)
     }
 
-    @AfterEach
+    @After
     fun closeDatabase() {
         database.close()
     }

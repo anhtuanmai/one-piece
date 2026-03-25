@@ -9,12 +9,10 @@ import io.mockk.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Nested
-import org.junit.jupiter.api.Test
+import org.junit.After
+import org.junit.Assert.*
+import org.junit.Before
+import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ConnectivityManagerNetworkMonitorTest {
@@ -25,7 +23,7 @@ class ConnectivityManagerNetworkMonitorTest {
     private lateinit var networkMonitor: ConnectivityManagerNetworkMonitor
     private lateinit var capturedCallback: ConnectivityManager.NetworkCallback
 
-    @BeforeEach
+    @Before
     fun setup() {
         testDispatcher = StandardTestDispatcher()
         Dispatchers.setMain(testDispatcher)
@@ -62,19 +60,15 @@ class ConnectivityManagerNetworkMonitorTest {
         )
     }
 
-    @AfterEach
+    @After
     fun tearDown() {
         Dispatchers.resetMain()
         unmockkAll()
     }
 
-    @Nested
-    @DisplayName("Initial Connection State")
-    inner class InitialConnectionState {
 
         @Test
-        @DisplayName("When getSystemService returns null then emits false")
-        fun testNullConnectivityManager() = runTest {
+                fun testNullConnectivityManager() = runTest {
             // Given
             val nullContext = mockk<Context>(relaxed = true)
             every {
@@ -95,8 +89,7 @@ class ConnectivityManagerNetworkMonitorTest {
         }
 
         @Test
-        @DisplayName("When initially connected then emits true")
-        fun testInitiallyConnected() = runTest {
+                fun testInitiallyConnected() = runTest {
             // Given
             mockStartConnectionState(true)
 
@@ -108,8 +101,7 @@ class ConnectivityManagerNetworkMonitorTest {
         }
 
         @Test
-        @DisplayName("When initially disconnected then emits false")
-        fun testInitiallyDisconnected() = runTest {
+                fun testInitiallyDisconnected() = runTest {
             // Given
             mockStartConnectionState(false)
 
@@ -119,15 +111,10 @@ class ConnectivityManagerNetworkMonitorTest {
                 cancelAndIgnoreRemainingEvents()
             }
         }
-    }
 
-    @Nested
-    @DisplayName("Network State Changes")
-    inner class NetworkStateChanges {
 
         @Test
-        @DisplayName("When network becomes available then emits true")
-        fun testNetworkBecomesAvailable() = runTest {
+                fun testNetworkBecomesAvailable() = runTest {
             // Given
             mockStartConnectionState(false)
 
@@ -145,8 +132,7 @@ class ConnectivityManagerNetworkMonitorTest {
         }
 
         @Test
-        @DisplayName("When network is lost then emits false")
-        fun testNetworkIsLost() = runTest {
+                fun testNetworkIsLost() = runTest {
             // Given
             mockStartConnectionState(false)
 
@@ -166,15 +152,10 @@ class ConnectivityManagerNetworkMonitorTest {
                 cancelAndIgnoreRemainingEvents()
             }
         }
-    }
 
-    @Nested
-    @DisplayName("Multiple Networks")
-    inner class MultipleNetworks {
 
         @Test
-        @DisplayName("When multiple networks available then stays true")
-        fun testMultipleNetworksAvailable() = runTest {
+                fun testMultipleNetworksAvailable() = runTest {
             // Given
             mockStartConnectionState(false)
 
@@ -202,8 +183,7 @@ class ConnectivityManagerNetworkMonitorTest {
         }
 
         @Test
-        @DisplayName("When all networks lost then emits false")
-        fun testAllNetworksLost() = runTest {
+                fun testAllNetworksLost() = runTest {
             // Given
             mockStartConnectionState(false)
 
@@ -230,15 +210,10 @@ class ConnectivityManagerNetworkMonitorTest {
                 cancelAndIgnoreRemainingEvents()
             }
         }
-    }
 
-    @Nested
-    @DisplayName("Callback Management")
-    inner class CallbackManagement {
 
         @Test
-        @DisplayName("Callback is registered on collection")
-        fun testCallbackRegistration() = runTest {
+                fun testCallbackRegistration() = runTest {
             networkMonitor.isOnline.test {
                 awaitItem()
                 cancelAndIgnoreRemainingEvents()
@@ -253,8 +228,7 @@ class ConnectivityManagerNetworkMonitorTest {
         }
 
         @Test
-        @DisplayName("Callback is unregistered on cancellation")
-        fun testCallbackUnregistration() = runTest {
+                fun testCallbackUnregistration() = runTest {
             networkMonitor.isOnline.test {
                 awaitItem()
                 cancel()
@@ -266,7 +240,6 @@ class ConnectivityManagerNetworkMonitorTest {
                 connectivityManager.unregisterNetworkCallback(capturedCallback)
             }
         }
-    }
     
     fun mockStartConnectionState(isConnected : Boolean) {
         if (!isMockKMock(ConnectivityManagerHelper)) {

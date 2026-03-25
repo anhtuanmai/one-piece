@@ -1,7 +1,7 @@
 package demo.at.ram.data.source.remote.model
 
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.Test
+import org.junit.Assert.*
+import org.junit.Test
 
 class RestInfoTest {
 

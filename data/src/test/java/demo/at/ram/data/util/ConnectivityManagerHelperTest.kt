@@ -4,18 +4,16 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import io.mockk.*
-import org.junit.jupiter.api.*
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.extension.ExtendWith
-import tech.apter.junit.jupiter.robolectric.RobolectricExtension
+import org.junit.*
+import org.junit.Assert.*
+import org.junit.runner.RunWith
 
-@ExtendWith(RobolectricExtension::class)
-@DisplayName("ConnectivityManagerHelper Tests")
+@RunWith(org.robolectric.RobolectricTestRunner::class)
 class ConnectivityManagerHelperTest {
 
     private lateinit var connectivityManager: ConnectivityManager
 
-    @BeforeEach
+    @Before
     fun setup() {
         // Mock the singleton object
         mockkObject(ConnectivityManagerHelper)
@@ -24,20 +22,16 @@ class ConnectivityManagerHelperTest {
         connectivityManager = mockk(relaxed = true)
     }
 
-    @AfterEach
+    @After
     fun tearDown() {
         // Important: unmock the object after each test
         unmockkObject(ConnectivityManagerHelper)
         clearAllMocks()
     }
 
-    @Nested
-    @DisplayName("When network is connected")
-    inner class NetworkConnected {
 
         @Test
-        @DisplayName("Returns true when network has internet capability")
-        fun testNetworkWithInternetCapability() {
+                fun testNetworkWithInternetCapability() {
             // Given - mock network with internet capability
             val mockNetwork = mockk<Network>()
             val mockCapabilities = mockk<NetworkCapabilities> {
@@ -60,8 +54,7 @@ class ConnectivityManagerHelperTest {
         }
 
         @Test
-        @DisplayName("Returns false when network has no internet capability")
-        fun testNetworkWithoutInternetCapability() {
+                fun testNetworkWithoutInternetCapability() {
             // Given - network without internet capability
             val mockNetwork = mockk<Network>()
             val mockCapabilities = mockk<NetworkCapabilities> {
@@ -80,15 +73,10 @@ class ConnectivityManagerHelperTest {
             verify { connectivityManager.activeNetwork }
             verify { connectivityManager.getNetworkCapabilities(mockNetwork) }
         }
-    }
 
-    @Nested
-    @DisplayName("When network is not available")
-    inner class NetworkNotAvailable {
 
         @Test
-        @DisplayName("Returns false when activeNetwork is null")
-        fun testNoActiveNetwork() {
+                fun testNoActiveNetwork() {
             // Given - no active network
             every { connectivityManager.activeNetwork } returns null
 
@@ -103,8 +91,7 @@ class ConnectivityManagerHelperTest {
         }
 
         @Test
-        @DisplayName("Returns false when network capabilities is null")
-        fun testNullNetworkCapabilities() {
+                fun testNullNetworkCapabilities() {
             // Given - network exists but capabilities is null
             val mockNetwork = mockk<Network>()
             every { connectivityManager.activeNetwork } returns mockNetwork
@@ -119,27 +106,21 @@ class ConnectivityManagerHelperTest {
             verify { connectivityManager.activeNetwork }
             verify { connectivityManager.getNetworkCapabilities(mockNetwork) }
         }
-    }
 
-    @Nested
-    @DisplayName("Edge Cases")
-    inner class EdgeCases {
 
         @Test
-        @DisplayName("Handles exceptions gracefully")
-        fun testExceptionHandling() {
+                fun testExceptionHandling() {
             // Given - exception when getting network
             every { connectivityManager.activeNetwork } throws RuntimeException("Network error")
 
             // When/Then - should throw (or handle based on your error strategy)
-            assertThrows<RuntimeException> {
+            assertThrows(RuntimeException::class.java) {
                 ConnectivityManagerHelper.isCurrentlyConnected(connectivityManager)
             }
         }
 
         @Test
-        @DisplayName("Can be called multiple times with different results")
-        fun testMultipleCalls() {
+                fun testMultipleCalls() {
             // First call - connected
             val mockNetwork = mockk<Network>()
             val mockCapabilities = mockk<NetworkCapabilities> {
@@ -157,8 +138,7 @@ class ConnectivityManagerHelperTest {
         }
 
         @Test
-        @DisplayName("Works with different ConnectivityManager instances")
-        fun testDifferentManagerInstances() {
+                fun testDifferentManagerInstances() {
             // Given - two different managers
             val manager1 = mockk<ConnectivityManager>(relaxed = true)
             val manager2 = mockk<ConnectivityManager>(relaxed = true)
@@ -180,15 +160,10 @@ class ConnectivityManagerHelperTest {
             assertTrue(result1)
             assertFalse(result2)
         }
-    }
 
-    @Nested
-    @DisplayName("Network Types")
-    inner class NetworkTypes {
 
         @Test
-        @DisplayName("Returns true for WiFi network with internet")
-        fun testWiFiNetworkConnected() {
+                fun testWiFiNetworkConnected() {
             // Given - WiFi network with internet
             val mockNetwork = mockk<Network>()
             val mockCapabilities = mockk<NetworkCapabilities> {
@@ -206,8 +181,7 @@ class ConnectivityManagerHelperTest {
         }
 
         @Test
-        @DisplayName("Returns true for cellular network with internet")
-        fun testCellularNetworkConnected() {
+                fun testCellularNetworkConnected() {
             // Given - Cellular network with internet
             val mockNetwork = mockk<Network>()
             val mockCapabilities = mockk<NetworkCapabilities> {
@@ -225,8 +199,7 @@ class ConnectivityManagerHelperTest {
         }
 
         @Test
-        @DisplayName("Returns false for VPN without internet capability")
-        fun testVPNWithoutInternet() {
+                fun testVPNWithoutInternet() {
             // Given - VPN without internet capability
             val mockNetwork = mockk<Network>()
             val mockCapabilities = mockk<NetworkCapabilities> {
@@ -242,15 +215,10 @@ class ConnectivityManagerHelperTest {
             // Then
             assertFalse(result)
         }
-    }
 
-    @Nested
-    @DisplayName("Verification Tests")
-    inner class VerificationTests {
 
         @Test
-        @DisplayName("Verifies correct method call sequence")
-        fun testMethodCallSequence() {
+                fun testMethodCallSequence() {
             // Given
             val mockNetwork = mockk<Network>()
             val mockCapabilities = mockk<NetworkCapabilities> {
@@ -271,8 +239,7 @@ class ConnectivityManagerHelperTest {
         }
 
         @Test
-        @DisplayName("Does not call getNetworkCapabilities when activeNetwork is null")
-        fun testNoCapabilitiesCheckWhenNoNetwork() {
+                fun testNoCapabilitiesCheckWhenNoNetwork() {
             // Given
             every { connectivityManager.activeNetwork } returns null
 
@@ -283,5 +250,4 @@ class ConnectivityManagerHelperTest {
             verify(exactly = 1) { connectivityManager.activeNetwork }
             verify(exactly = 0) { connectivityManager.getNetworkCapabilities(any()) }
         }
-    }
 }

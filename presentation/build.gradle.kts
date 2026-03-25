@@ -3,11 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.kotlin.android.ksp)
-//    alias(libs.plugins.kotlin.kapt)
-    alias(libs.plugins.mannodermaus.android.junit5)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.serialization)
-    alias(libs.plugins.apter.junit5)
     alias(libs.plugins.google.services)
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.screenshot)
@@ -90,14 +87,15 @@ dependencies {
     implementation(libs.timber)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.hilt.android)
+}
 
+//Testing
+dependencies {
     implementation(libs.screenshot.validation.api)
     screenshotTestImplementation(libs.screenshot.validation.api)
     screenshotTestImplementation(libs.androidx.compose.ui.tooling)
 
-    //Testing
     debugImplementation(libs.androidx.compose.ui.testManifest)
-
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.compose.ui.uiTestJunit4)
@@ -106,25 +104,25 @@ dependencies {
     androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.androidx.test.rules)
-    androidTestImplementation(libs.mockk)
+    androidTestImplementation(libs.mockk) {
+        // Exclude JUnit 5 groups
+        exclude(group = "org.junit.jupiter")
+        exclude(group = "org.junit.jupiter")
+    }
 
     kspAndroidTest(libs.dagger.hilt.compiler)
-//    kaptAndroidTest(libs.dagger.hilt.compiler)
 
-    testImplementation(libs.junit.jupiter.api)
-    testImplementation(libs.junit.jupiter.engine)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockk)
+    testImplementation(libs.junit4)
     testImplementation(libs.hilt.android.testing)
     testImplementation(libs.robolectric)
-    testImplementation(libs.junit5.test.compose)
     testImplementation(libs.androidx.navigation.testing)
 }
 
 //EnableDynamicAgentLoading for Mockk
 afterEvaluate {
     tasks.named<Test>("testDebugUnitTest") {
-        useJUnitPlatform()
         jvmArgs("-XX:+EnableDynamicAgentLoading")
     }
 }
