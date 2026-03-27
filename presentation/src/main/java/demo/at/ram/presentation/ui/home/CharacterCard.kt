@@ -17,7 +17,8 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import demo.at.ram.domain.model.Character
-import demo.at.ram.domain.model.Location
+import demo.at.ram.domain.model.Crew
+import demo.at.ram.domain.model.Fruit
 import demo.at.ram.presentation.designsystem.theme.RickAndMortyTheme
 import demo.at.ram.presentation.designsystem.view.ImageWithStates
 import demo.at.ram.shared.annotation.ExcludeFromJacocoGeneratedReport
@@ -36,14 +37,14 @@ fun CharacterCard(
         shape = RoundedCornerShape(16.dp)
     ) {
         Row {
-            ImageWithStates(character.image)
-            Column {
+            ImageWithStates(character.fruit?.filename)
+            Column(modifier = Modifier.padding(16.dp)) {
                 Text(text = character.name ?: "")
                 Text(
                     text = character.status ?: "",
-                    color = if (character.status == "Alive") Color.Green else Color.Red,
+                    color = if (character.status == "vivant") Color.Green else Color.Red,
                 )
-                Text(text = character.location?.name ?: "")
+                Text(text = character.crew?.name ?: "")
             }
         }
     }
@@ -81,10 +82,10 @@ fun CharacterCardPreview() {
             CharacterCard(
                 character = Character(
                     id = 1,
-                    name = "Rick Sanchez",
-                    status = "Alive",
-                    location = Location("Earth", null),
-                    image = "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+                    name = "Monkey D Luffy",
+                    status = "vivant",
+                    crew = Crew(id = 1, name = "The Chapeau de Paille crew"),
+                    fruit = Fruit(id = 1, filename = "https://images.api-onepiece.com/fruits/5665e89442022d4c0e7684c650dc6d6b.png")
                 ),
                 onCharacterClick = {}
             )
@@ -107,17 +108,10 @@ fun CharacterCardListPreview() {
                 characters = listOf(
                     Character(
                         id = 1,
-                        name = "Rick Sanchez",
-                        status = "Alive",
-                        location = Location("Earth", null),
-                        image = "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-                    ),
-                    Character(
-                        id = 7,
-                        name = "Abradolf Lincler",
-                        status = "Dead",
-                        location = Location("Testicle Monster Dimension", null),
-                        image = "https://rickandmortyapi.com/api/character/avatar/7.jpeg"
+                        name = "Monkey D Luffy",
+                        status = "vivant",
+                        crew = Crew(id = 1, name = "The Chapeau de Paille crew"),
+                        fruit = Fruit(id = 1, filename = "https://images.api-onepiece.com/fruits/5665e89442022d4c0e7684c650dc6d6b.png")
                     )
                 ),
                 onCharacterClick = {}

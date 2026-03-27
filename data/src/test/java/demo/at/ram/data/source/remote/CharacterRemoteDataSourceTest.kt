@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test
 class CharacterRemoteDataSourceTest {
 
     @MockK
-    lateinit var ramService: RamService
+    lateinit var ramService: OnePieceWebserverService
 
     private lateinit var characterRemoteDataSource: CharacterRemoteDataSource
 

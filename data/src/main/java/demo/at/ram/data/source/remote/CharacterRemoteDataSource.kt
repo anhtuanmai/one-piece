@@ -11,11 +11,11 @@ import javax.inject.Inject
  * Remote character data source
  */
 class CharacterRemoteDataSource @Inject constructor(
-    private val ramService: RamService,
+    private val webserverService: OnePieceWebserverService,
 ) {
     suspend fun getAllCharacters(): ResponseWrapper<RestBody<Character>> {
         Timber.d("getAllCharacters")
-        return safeApiCall { ramService.getAllCharacters() }
+        return safeApiCall { webserverService.getAllCharacters() }
     }
 }
 

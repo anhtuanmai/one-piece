@@ -23,8 +23,8 @@ import javax.inject.Inject
 class CharacterRepositoryImpl @Inject constructor(
     private val remoteDataSource: CharacterRemoteDataSource,
     private val localDataSource: CharacterLocalDataSource,
-    @ApplicationScope private val applicationScope: CoroutineScope,
-    @Dispatcher(RamDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
+    @param:ApplicationScope private val applicationScope: CoroutineScope,
+    @param:Dispatcher(RamDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
 ) : CharacterRepository {
 
     @OptIn(ExperimentalCoroutinesApi::class)
