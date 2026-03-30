@@ -1,6 +1,6 @@
-<img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" height="100"/>
+<img src="shared/src/main/res/drawable/luffy_gear_5.jpg" height="100"/>
 
-# Rick and Morty Android Application 
+# One Piece Android Application
 Modern Android development showcase with Clean Architecture and Jetpack Compose
 
 ## 📱 About
@@ -9,10 +9,10 @@ The UI is built with Jetpack Compose and powered by Kotlin Coroutines/Flow, whil
 The goal is clarity over complexity: readable code, documented decisions, and practical patterns you can reuse in production apps.
 
 ## ✨ Features
-- Browse a list of Rick and Morty characters fetched from the public API.
+- Browse a list of One Piece characters and Devil Fruits fetched from the One Piece API.
 - Local caching for offline access and faster reloads.
 - Save and manage a personal list of favorite characters.
-- Character details.
+- Character and Devil Fruit details.
 
 ## 🛠 Tech Stack
 
