@@ -3,7 +3,7 @@ package demo.at.ram.presentation.designsystem.theme
 import androidx.compose.ui.graphics.Color
 
 /**
- * Rick and Morty colors.
+ * One Piece colors.
  */
 internal val Blue10 = Color(0xFF001F28)
 internal val Blue20 = Color(0xFF003544)

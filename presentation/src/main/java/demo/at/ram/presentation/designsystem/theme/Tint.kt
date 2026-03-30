@@ -5,7 +5,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 /**
- * A class to model background color and tonal elevation values for Rick and Morty.
+ * A class to model background color and tonal elevation values for One Piece.
  */
 @Immutable
 data class TintTheme(

@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import demo.at.ram.presentation.designsystem.theme.MyAppTheme
 
 /**
- * Rick and Morty filled button with generic content slot. Wraps Material 3 [Button].
+ * One Piece filled button with generic content slot. Wraps Material 3 [Button].
  *
  * @param onClick Will be called when the user clicks the button.
  * @param modifier Modifier to be applied to the button.
@@ -67,7 +67,7 @@ fun RamButton(
 }
 
 /**
- * Rick and Morty filled button with text and icon content slots.
+ * One Piece filled button with text and icon content slots.
  *
  * @param onClick Will be called when the user clicks the button.
  * @param modifier Modifier to be applied to the button.
@@ -102,7 +102,7 @@ fun RamButton(
 }
 
 /**
- * Rick and Morty outlined button with generic content slot. Wraps Material 3 [OutlinedButton].
+ * One Piece outlined button with generic content slot. Wraps Material 3 [OutlinedButton].
  *
  * @param onClick Will be called when the user clicks the button.
  * @param modifier Modifier to be applied to the button.
@@ -143,7 +143,7 @@ fun RamOutlinedButton(
 }
 
 /**
- * Rick and Morty outlined button with text and icon content slots.
+ * One Piece outlined button with text and icon content slots.
  *
  * @param onClick Will be called when the user clicks the button.
  * @param modifier Modifier to be applied to the button.
@@ -178,7 +178,7 @@ fun RamOutlinedButton(
 }
 
 /**
- * Rick and Morty text button with generic content slot. Wraps Material 3 [TextButton].
+ * One Piece text button with generic content slot. Wraps Material 3 [TextButton].
  *
  * @param onClick Will be called when the user clicks the button.
  * @param modifier Modifier to be applied to the button.
@@ -205,7 +205,7 @@ fun RamTextButton(
 }
 
 /**
- * Rick and Morty text button with text and icon content slots.
+ * One Piece text button with text and icon content slots.
  *
  * @param onClick Will be called when the user clicks the button.
  * @param modifier Modifier to be applied to the button.
@@ -235,7 +235,7 @@ fun RamTextButton(
 }
 
 /**
- * Internal Rick and Morty button content layout for arranging the text label and leading icon.
+ * Internal One Piece button content layout for arranging the text label and leading icon.
  *
  * @param text The button text label content.
  * @param leadingIcon The button leading icon content. Default is `null` for no leading icon.Ï

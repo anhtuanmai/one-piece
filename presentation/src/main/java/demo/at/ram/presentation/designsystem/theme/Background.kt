@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 
 /**
- * A class to model background color and tonal elevation values for Rick and Morty.
+ * A class to model background color and tonal elevation values for One Piece.
  */
 @Immutable
 data class BackgroundTheme(
