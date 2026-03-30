@@ -34,8 +34,8 @@ class GetAllCharactersUseCaseTest {
                 isSuccessful = true,
                 httpCode = 200,
                 data = listOf(
-                    Character(id = 1, name = "Rick Sanchez"),
-                    Character(id = 2, name = "Morty Smith")
+                    Character(id = 1, name = "Monkey D Luffy"),
+                    Character(id = 2, name = "Roronoa Zoro")
                 ),
             )
         )

@@ -32,7 +32,7 @@ import demo.at.ram.domain.model.Character
 import demo.at.ram.domain.model.Crew
 import demo.at.ram.domain.model.Fruit
 import demo.at.ram.presentation.R
-import demo.at.ram.presentation.designsystem.theme.RickAndMortyTheme
+import demo.at.ram.presentation.designsystem.theme.MyAppTheme
 import demo.at.ram.presentation.designsystem.view.ImageWithStates
 import demo.at.ram.presentation.designsystem.view.RamIconToggleButton
 import demo.at.ram.presentation.ui.log.LogCompositions
@@ -170,7 +170,7 @@ private fun CharacterInfo(
 @Preview(showBackground = true, device = "id:pixel_7")
 @Composable
 fun DetailsScreenPreview() {
-    RickAndMortyTheme {
+    MyAppTheme {
         DetailsContent(
             DetailsUiState.Success(
                 Character(
@@ -196,7 +196,7 @@ fun DetailsScreenPreview() {
 @Preview(showBackground = true)
 @Composable
 fun CharacterPreview() {
-    RickAndMortyTheme {
+    MyAppTheme {
         Character(
             Character(
                 id = 1,

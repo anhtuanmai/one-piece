@@ -5,7 +5,7 @@ import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import demo.at.ram.presentation.designsystem.theme.RickAndMortyTheme
+import demo.at.ram.presentation.designsystem.theme.MyAppTheme
 import demo.at.ram.presentation.di.TestData
 import org.junit.After
 import org.junit.Before
@@ -36,7 +36,7 @@ class DetailsScreenTest02 {
         // Given + When
         val character = TestData.characters[0]
         composeTestRule.setContent {
-            RickAndMortyTheme {
+            MyAppTheme {
                 DetailsContent(DetailsUiState.Success(character, true)) {}
             }
         }

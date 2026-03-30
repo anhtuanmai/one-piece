@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import demo.at.ram.domain.model.Character
 import demo.at.ram.domain.model.Crew
 import demo.at.ram.domain.model.Fruit
-import demo.at.ram.presentation.designsystem.theme.RickAndMortyTheme
+import demo.at.ram.presentation.designsystem.theme.MyAppTheme
 import demo.at.ram.presentation.designsystem.view.ImageWithStates
 import demo.at.ram.shared.annotation.ExcludeFromJacocoGeneratedReport
 
@@ -72,7 +72,7 @@ fun CharacterCardList(
 @Preview(showBackground = true, device = "id:pixel_8")
 @Composable
 fun CharacterCardPreview() {
-    RickAndMortyTheme {
+    MyAppTheme {
         Box(
             Modifier
                 .background(Color.DarkGray)
@@ -97,7 +97,7 @@ fun CharacterCardPreview() {
 @Preview(showBackground = true, device = "id:pixel_8")
 @Composable
 fun CharacterCardListPreview() {
-    RickAndMortyTheme {
+    MyAppTheme {
         Box(
             Modifier
                 .background(Color.DarkGray)

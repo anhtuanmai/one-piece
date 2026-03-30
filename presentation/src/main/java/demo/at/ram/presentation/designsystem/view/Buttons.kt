@@ -33,7 +33,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import demo.at.ram.presentation.designsystem.theme.RickAndMortyTheme
+import demo.at.ram.presentation.designsystem.theme.MyAppTheme
 
 /**
  * Rick and Morty filled button with generic content slot. Wraps Material 3 [Button].
@@ -301,7 +301,7 @@ fun RamBackground(
 @ThemePreviews
 @Composable
 fun RamButtonPreview() {
-    RickAndMortyTheme {
+    MyAppTheme {
         RamBackground(modifier = Modifier.size(150.dp, 50.dp)) {
             RamButton(onClick = {}, text = { Text("Test button") })
         }
@@ -311,7 +311,7 @@ fun RamButtonPreview() {
 @ThemePreviews
 @Composable
 fun RamOutlinedButtonPreview() {
-    RickAndMortyTheme {
+    MyAppTheme {
         RamBackground(modifier = Modifier.size(150.dp, 50.dp)) {
             RamOutlinedButton(onClick = {}, text = { Text("Test button") })
         }
@@ -321,7 +321,7 @@ fun RamOutlinedButtonPreview() {
 @ThemePreviews
 @Composable
 fun RamButtonLeadingIconPreview() {
-    RickAndMortyTheme {
+    MyAppTheme {
         RamBackground(modifier = Modifier.size(150.dp, 50.dp)) {
             RamButton(
                 onClick = {},
@@ -374,7 +374,7 @@ fun RamIconToggleButton(
 @ThemePreviews
 @Composable
 fun IconButtonPreview() {
-    RickAndMortyTheme {
+    MyAppTheme {
         RamIconToggleButton(
             checked = true,
             onCheckedChange = { },
@@ -397,7 +397,7 @@ fun IconButtonPreview() {
 @ThemePreviews
 @Composable
 fun IconButtonPreviewUnchecked() {
-    RickAndMortyTheme {
+    MyAppTheme {
         RamIconToggleButton(
             checked = false,
             onCheckedChange = { },

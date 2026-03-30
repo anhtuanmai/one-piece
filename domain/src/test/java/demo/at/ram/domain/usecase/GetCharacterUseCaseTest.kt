@@ -35,7 +35,7 @@ class GetCharacterUseCaseTest {
     @Test
     fun invoke() = runTest {
         // Given
-        val character = Character(id = 1, name = "Rick Sanchez")
+        val character = Character(id = 1, name = "Monkey D Luffy")
         every { onePieceRepository.getCharacter(1) } returns flowOf(character)
 
         // When & Then

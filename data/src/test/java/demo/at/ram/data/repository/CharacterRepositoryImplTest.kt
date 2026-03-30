@@ -56,8 +56,8 @@ class CharacterRepositoryImplTest {
     fun getAllCharacters_testSuccessRemote() = runTest(testScheduler) {
         // Given : Remote OK
         val expectedCharacters = listOf(
-            Character(id = 1, name = "Rick Sanchez"),
-            Character(id = 2, name = "Morty Smith")
+            Character(id = 1, name = "Monkey D Luffy"),
+            Character(id = 2, name = "Roronoa Zoro")
         )
         expectedCharacters.map { CharacterEntity(it) }
         expectedCharacters.map { it.id }
@@ -85,8 +85,8 @@ class CharacterRepositoryImplTest {
                 ResponseWrapper.wrapError(IOException("No internet connection"))
 
         val expectedCharacters = listOf(
-            Character(id = 1, name = "Rick Sanchez"),
-            Character(id = 2, name = "Morty Smith")
+            Character(id = 1, name = "Monkey D Luffy"),
+            Character(id = 2, name = "Roronoa Zoro")
         )
         coEvery { localDataSource.loadCharacters() } returns expectedCharacters.map {
             CharacterEntity(
@@ -128,8 +128,8 @@ class CharacterRepositoryImplTest {
     fun getSavedCharacters() = runTest {
         // Given
         val expectedCharacters = listOf(
-            Character(id = 1, name = "Rick Sanchez"),
-            Character(id = 2, name = "Morty Smith")
+            Character(id = 1, name = "Monkey D Luffy"),
+            Character(id = 2, name = "Roronoa Zoro")
         )
         coEvery { localDataSource.loadCharacters() } returns expectedCharacters.map {
             CharacterEntity(
