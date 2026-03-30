@@ -6,19 +6,22 @@ import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import com.google.gson.Gson
 import demo.at.ram.data.source.local.dao.CharacterDao
+import demo.at.ram.data.source.local.dao.FruitDao
 import demo.at.ram.data.source.local.entity.CharacterEntity
+import demo.at.ram.data.source.local.entity.FruitEntity
 import demo.at.ram.domain.model.Crew
 import demo.at.ram.domain.model.Fruit
 import java.util.Date
 
 @Database(
-    entities = [CharacterEntity::class],
+    entities = [CharacterEntity::class, FruitEntity::class],
     version = 1,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun characterDao(): CharacterDao
+    abstract fun fruitDao(): FruitDao
 }
 
 class Converters {

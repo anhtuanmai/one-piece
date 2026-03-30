@@ -2,7 +2,7 @@ package demo.at.ram.data.repository
 
 import app.cash.turbine.test
 import demo.at.ram.domain.model.Character
-import demo.at.ram.domain.repository.CharacterRepository
+import demo.at.ram.domain.repository.OnePieceRepository
 import demo.at.ram.domain.repository.UserDataRepository
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test
 class CompositeCharacterRepositoryImplTest {
 
     @MockK
-    lateinit var characterRepository: CharacterRepository
+    lateinit var onePieceRepository: OnePieceRepository
 
     @MockK
     lateinit var userDataRepository: UserDataRepository
@@ -25,11 +25,11 @@ class CompositeCharacterRepositoryImplTest {
 
     @BeforeEach
     fun setUp() {
-        characterRepository = mockk<CharacterRepository>(relaxed = true)
+        onePieceRepository = mockk<OnePieceRepository>(relaxed = true)
         userDataRepository = mockk<UserDataRepository>(relaxed = true)
 
         compositeImpl = CompositeCharacterRepositoryImpl(
-            characterRepository = characterRepository,
+            onePieceRepository = onePieceRepository,
             userDataRepository = userDataRepository,
         )
     }
@@ -50,7 +50,7 @@ class CompositeCharacterRepositoryImplTest {
             )
         )
         coEvery { userDataRepository.getFavorites() } returns favoritesFlow
-        coEvery { characterRepository.getSavedCharacters() } returns allCharactersFlow
+        coEvery { onePieceRepository.getSavedCharacters() } returns allCharactersFlow
 
         // When & Then
         compositeImpl.getFavorites().test {

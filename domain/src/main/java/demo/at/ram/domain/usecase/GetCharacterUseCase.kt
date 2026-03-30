@@ -1,18 +1,15 @@
 package demo.at.ram.domain.usecase
 
 import demo.at.ram.domain.model.Character
-import demo.at.ram.domain.repository.CharacterRepository
-import demo.at.ram.domain.repository.CompositeCharacterRepository
-import demo.at.ram.shared.model.ResponseResult
+import demo.at.ram.domain.repository.OnePieceRepository
 import kotlinx.coroutines.flow.Flow
-import timber.log.Timber
 import javax.inject.Inject
 
 class GetCharacterUseCase @Inject constructor(
-    private val characterRepository: CharacterRepository,
+    private val onePieceRepository: OnePieceRepository,
 ) {
     operator fun invoke(id: Long): Flow<Character> {
-        val character = characterRepository.getCharacter(id)
+        val character = onePieceRepository.getCharacter(id)
         return character
     }
 }

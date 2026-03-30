@@ -6,8 +6,7 @@ import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import demo.at.ram.data.di.RepositoryModule
 import demo.at.ram.data.repository.CompositeCharacterRepositoryImpl
-import demo.at.ram.data.repository.UserDataRepositoryImpl
-import demo.at.ram.domain.repository.CharacterRepository
+import demo.at.ram.domain.repository.OnePieceRepository
 import demo.at.ram.domain.repository.CompositeCharacterRepository
 import demo.at.ram.domain.repository.UserDataRepository
 import javax.inject.Singleton
@@ -23,8 +22,8 @@ abstract class FakeRepositoryModule {
     @Singleton
     @Binds
     abstract fun bindCharacterRepository(
-        fakeCharacterRepository: FakeCharacterRepository
-    ): CharacterRepository
+        fakeCharacterRepository: FakeOnePieceRepository
+    ): OnePieceRepository
 
     @Binds
     abstract fun bindUserDataRepository(
@@ -32,7 +31,7 @@ abstract class FakeRepositoryModule {
     ): UserDataRepository
 
     /**
-     * use [CompositeCharacterRepositoryImpl] with [FakeCharacterRepository] and
+     * use [CompositeCharacterRepositoryImpl] with [FakeOnePieceRepository] and
      * [FakeUserDataRepository]
      */
     @Binds

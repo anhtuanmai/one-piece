@@ -2,9 +2,8 @@ package demo.at.ram.domain.usecase
 
 import app.cash.turbine.test
 import demo.at.ram.domain.model.Character
-import demo.at.ram.domain.repository.CharacterRepository
+import demo.at.ram.domain.repository.OnePieceRepository
 import demo.at.ram.shared.model.ResponseResult
-import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
@@ -17,14 +16,14 @@ import org.junit.jupiter.api.Test
 class GetAllCharactersUseCaseTest {
 
     @MockK
-    private lateinit var characterRepository: CharacterRepository
+    private lateinit var onePieceRepository: OnePieceRepository
 
     private lateinit var getAllCharactersUseCase: GetAllCharactersUseCase
 
     @BeforeEach
     fun setup() {
-        characterRepository = mockk<CharacterRepository>()
-        getAllCharactersUseCase = GetAllCharactersUseCase(characterRepository)
+        onePieceRepository = mockk<OnePieceRepository>()
+        getAllCharactersUseCase = GetAllCharactersUseCase(onePieceRepository)
     }
 
     @Test
@@ -40,7 +39,7 @@ class GetAllCharactersUseCaseTest {
                 ),
             )
         )
-        every { characterRepository.getAllCharacters() } returns allCharactersFlow
+        every { onePieceRepository.getAllCharacters() } returns allCharactersFlow
 
         // When & Then
         getAllCharactersUseCase().test {
