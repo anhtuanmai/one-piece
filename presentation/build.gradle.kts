@@ -63,9 +63,9 @@ kotlin {
 
 dependencies {
     implementation(project(":data"))
+    implementation(project(":shared"))
 
     ksp(libs.hilt.compiler)
-//    kapt(libs.hilt.compiler)
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(platform(libs.firebase.bom))

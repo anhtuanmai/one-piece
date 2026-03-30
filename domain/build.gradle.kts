@@ -49,7 +49,6 @@ dependencies {
     api(project(":shared"))
 
     ksp(libs.hilt.compiler)
-//    kapt(libs.hilt.compiler)
 
     implementation(libs.hilt.android)
     implementation(libs.gson)
