@@ -1,10 +1,9 @@
 package demo.at.ram.data.repository
 
-import demo.at.ram.data.source.local.CharacterLocalDataSource
+import demo.at.ram.data.source.local.LocalDataSource
 import demo.at.ram.data.source.local.entity.CharacterEntity
 import demo.at.ram.data.source.remote.CharacterRemoteDataSource
 import demo.at.ram.data.source.remote.model.ResponseWrapper
-import demo.at.ram.data.source.remote.model.RestBody
 import demo.at.ram.domain.model.Character
 import demo.at.ram.shared.model.SourceOrigin
 import io.mockk.coEvery
@@ -30,22 +29,22 @@ class CharacterRepositoryImplTest {
     private lateinit var remoteDataSource: CharacterRemoteDataSource
 
     @MockK
-    private lateinit var localDataSource: CharacterLocalDataSource
+    private lateinit var localDataSource: LocalDataSource
 
     private lateinit var testScope: CoroutineScope
     private lateinit var testScheduler: TestCoroutineScheduler
     private lateinit var testDispatcher: CoroutineDispatcher
-    private lateinit var repository: CharacterRepositoryImpl
+    private lateinit var repository: OnePieceRepositoryImpl
 
     @BeforeEach
     fun setUp() {
         remoteDataSource = mockk<CharacterRemoteDataSource>(relaxed = true)
-        localDataSource = mockk<CharacterLocalDataSource>(relaxed = true)
+        localDataSource = mockk<LocalDataSource>(relaxed = true)
 
         testScheduler = TestCoroutineScheduler()
         testDispatcher = StandardTestDispatcher(testScheduler)
         testScope = CoroutineScope(SupervisorJob() + testScheduler)
-        repository = CharacterRepositoryImpl(
+        repository = OnePieceRepositoryImpl(
             remoteDataSource = remoteDataSource,
             localDataSource = localDataSource,
             applicationScope = testScope,
@@ -57,12 +56,12 @@ class CharacterRepositoryImplTest {
     fun getAllCharacters_testSuccessRemote() = runTest(testScheduler) {
         // Given : Remote OK
         val expectedCharacters = listOf(
-            Character(id = 1, name = "Rick Sanchez"),
-            Character(id = 2, name = "Morty Smith")
+            Character(id = 1, name = "Monkey D Luffy"),
+            Character(id = 2, name = "Roronoa Zoro")
         )
         expectedCharacters.map { CharacterEntity(it) }
         expectedCharacters.map { it.id }
-        val mockResult = Response.success(RestBody(info = null, results = expectedCharacters))
+        val mockResult = Response.success(expectedCharacters)
         coEvery { remoteDataSource.getAllCharacters() } returns ResponseWrapper.wrapHttpResponse(
             mockResult
         )
@@ -86,8 +85,8 @@ class CharacterRepositoryImplTest {
                 ResponseWrapper.wrapError(IOException("No internet connection"))
 
         val expectedCharacters = listOf(
-            Character(id = 1, name = "Rick Sanchez"),
-            Character(id = 2, name = "Morty Smith")
+            Character(id = 1, name = "Monkey D Luffy"),
+            Character(id = 2, name = "Roronoa Zoro")
         )
         coEvery { localDataSource.loadCharacters() } returns expectedCharacters.map {
             CharacterEntity(
@@ -129,8 +128,8 @@ class CharacterRepositoryImplTest {
     fun getSavedCharacters() = runTest {
         // Given
         val expectedCharacters = listOf(
-            Character(id = 1, name = "Rick Sanchez"),
-            Character(id = 2, name = "Morty Smith")
+            Character(id = 1, name = "Monkey D Luffy"),
+            Character(id = 2, name = "Roronoa Zoro")
         )
         coEvery { localDataSource.loadCharacters() } returns expectedCharacters.map {
             CharacterEntity(

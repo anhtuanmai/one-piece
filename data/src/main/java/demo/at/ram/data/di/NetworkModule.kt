@@ -8,7 +8,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import demo.at.ram.data.source.remote.RamService
+import demo.at.ram.data.source.remote.OnePieceWebserverService
 import demo.at.ram.data.util.ConnectivityManagerNetworkMonitor
 import demo.at.ram.data.util.NetworkMonitor
 import kotlinx.serialization.json.Json
@@ -31,11 +31,11 @@ abstract class NetworkModule {
 
     companion object {
 
-        const val BASE_URL: String = "https://rickandmortyapi.com/api/"
+        const val BASE_URL: String = "https://api.api-onepiece.com/v2/"
 
         @Provides
         @Singleton
-        fun provideRamService(@ApplicationContext context: Context): RamService {
+        fun provideWebserverService(@ApplicationContext context: Context): OnePieceWebserverService {
             val isDebug = (context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
 
             val okHttpClient = OkHttpClient.Builder()
@@ -65,7 +65,7 @@ abstract class NetworkModule {
                 )
                 .build()
 
-            return retrofit.create(RamService::class.java)
+            return retrofit.create(OnePieceWebserverService::class.java)
         }
     }
 }

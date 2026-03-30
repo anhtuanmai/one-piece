@@ -4,7 +4,7 @@ import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
-import demo.at.ram.presentation.designsystem.theme.RickAndMortyTheme
+import demo.at.ram.presentation.designsystem.theme.MyAppTheme
 import demo.at.ram.presentation.di.TestData
 import org.junit.After
 import org.junit.Before
@@ -32,7 +32,7 @@ class FavoritesScreenTest {
         // Given + When
         val character = TestData.characters
         composeTestRule.setContent {
-            RickAndMortyTheme {
+            MyAppTheme {
                 FavoritesContent(FavoritesUiState.Success(character)) {}
             }
         }

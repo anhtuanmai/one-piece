@@ -36,8 +36,8 @@ class CharacterDaoTest {
         // Given
         val random = Random(36).nextLong(99999)
         val expectedCharacters = listOf(
-            CharacterEntity(id = random, name = "Rick Sanchez"),
-            CharacterEntity(id = random + 1, name = "Morty Smith")
+            CharacterEntity(id = random, name = "Monkey D Luffy"),
+            CharacterEntity(id = random + 1, name = "Roronoa Zoro")
         )
 
         // When
@@ -53,8 +53,8 @@ class CharacterDaoTest {
         // Given
         val random = Random(53).nextLong(99999)
         val expectedCharacters = listOf(
-            CharacterEntity(id = random, name = "Rick Sanchez"),
-            CharacterEntity(id = random + 1, name = "Morty Smith")
+            CharacterEntity(id = random, name = "Monkey D Luffy"),
+            CharacterEntity(id = random + 1, name = "Roronoa Zoro")
         )
 
         // When

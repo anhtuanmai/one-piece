@@ -8,7 +8,7 @@ import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 @HiltAndroidApp
-class RickAndMortyApplication : AppCore()
+class MyApplication : AppCore()
 
 open class AppCore : Application() {
 

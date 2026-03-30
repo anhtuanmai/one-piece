@@ -11,12 +11,11 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import demo.at.ram.data.util.NetworkMonitor
 import demo.at.ram.presentation.ui.RamApp
 import demo.at.ram.presentation.ui.rememberAppState
-import demo.at.ram.presentation.designsystem.theme.RickAndMortyTheme
+import demo.at.ram.presentation.designsystem.theme.MyAppTheme
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -39,7 +38,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val appState = rememberAppState(networkMonitor)
 
-            RickAndMortyTheme {
+            MyAppTheme {
                 RamApp(
                     appState = appState,
                     modifier = Modifier

@@ -1,9 +1,8 @@
 package demo.at.ram.data.source.local
 
 import androidx.room.Room
-import demo.at.ram.data.source.local.dao.CharacterDao
 import demo.at.ram.data.source.local.dao.FruitDao
-import demo.at.ram.data.source.local.entity.CharacterEntity
+import demo.at.ram.data.source.local.entity.FruitEntity
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -15,10 +14,9 @@ import tech.apter.junit.jupiter.robolectric.RobolectricExtension
 import kotlin.random.Random
 
 @ExtendWith(RobolectricExtension::class)
-class CharacterLocalDataSourceTest {
+class FruitLocalDataSourceTest {
 
     private lateinit var database: AppDatabase
-    private lateinit var characterDao: CharacterDao
     private lateinit var fruitDao: FruitDao
     private lateinit var localDS: LocalDataSource
 
@@ -31,38 +29,35 @@ class CharacterLocalDataSourceTest {
             .allowMainThreadQueries()
             .build()
 
-        characterDao = database.characterDao()
         fruitDao = database.fruitDao()
-
-        localDS = LocalDataSource(characterDao, fruitDao)
+        localDS = LocalDataSource(database.characterDao(), fruitDao)
     }
 
     @Test
-    fun saveAndLoadCharacters() = runTest {
-        // When 1 : robolectric database is empty at Start
-        val mustEmpty = localDS.loadCharacters()
+    fun saveAndLoadFruits() = runTest {
+        // When 1 : database is empty at start
+        val mustEmpty = localDS.loadFruits()
 
         // Then 1
         assertEquals(0, mustEmpty.size)
 
         // Given 2
-        val random = Random(36).nextLong(99999)
-        val expectedCharacters = listOf(
-            CharacterEntity(id = random, name = "Monkey D Luffy"),
-            CharacterEntity(id = random + 1, name = "Roronoa Zoro"),
+        val random = Random(42).nextLong(99999)
+        val expectedFruits = listOf(
+            FruitEntity(id = random, name = "Gum-Gum Fruit"),
+            FruitEntity(id = random + 1, name = "Flame-Flame Fruit"),
         )
 
         // When 2
-        localDS.saveCharacters(expectedCharacters)
-        val characters = localDS.loadCharacters()
+        localDS.saveFruits(expectedFruits)
+        val fruits = localDS.loadFruits()
 
         // Then 2
-        assertEquals(expectedCharacters, characters)
+        assertEquals(expectedFruits, fruits)
     }
 
     @AfterEach
     fun closeDatabase() {
         database.close()
     }
-
 }

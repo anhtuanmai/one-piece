@@ -9,24 +9,18 @@ data class Character(
     var id: Long,
     @SerializedName("name")
     var name: String? = null,
+    @SerializedName("size")
+    var size: String? = null,
+    @SerializedName("age")
+    var age: String? = null,
+    @SerializedName("bounty")
+    var bounty: String? = null,
+    @SerializedName("crew")
+    var crew: Crew? = null,
+    @SerializedName("fruit")
+    var fruit: Fruit? = null,
+    @SerializedName("job")
+    var job: String? = null,
     @SerializedName("status")
-    var status: String? = null,
-    @SerializedName("species")
-    var species: String? = null,
-    @SerializedName("type")
-    var type: String? = null,
-    @SerializedName("gender")
-    var gender: String? = null,
-    @SerializedName("origin")
-    var origin: CharacterOrigin? = CharacterOrigin(),
-    @SerializedName("location")
-    var location: Location? = Location(),
-    @SerializedName("image")
-    var image: String? = null,
-    @SerializedName("episode")
-    var episode: ArrayList<String> = arrayListOf(),
-    @SerializedName("url")
-    var url: String? = null,
-    @SerializedName("created")
-    var created: String? = null
+    var status: String? = null
 )

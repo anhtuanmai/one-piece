@@ -29,10 +29,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.android.tools.screenshot.PreviewTest
 import demo.at.ram.domain.model.Character
-import demo.at.ram.domain.model.CharacterOrigin
-import demo.at.ram.domain.model.Location
+import demo.at.ram.domain.model.Crew
+import demo.at.ram.domain.model.Fruit
 import demo.at.ram.presentation.R
-import demo.at.ram.presentation.designsystem.theme.RickAndMortyTheme
+import demo.at.ram.presentation.designsystem.theme.MyAppTheme
 import demo.at.ram.presentation.designsystem.view.ImageWithStates
 import demo.at.ram.presentation.designsystem.view.RamIconToggleButton
 import demo.at.ram.presentation.ui.log.LogCompositions
@@ -92,7 +92,7 @@ internal fun Character(character: Character) {
     Column {
         LogCompositions("Column character")
 
-        ImageWithStates(character.image, Modifier.width(200.dp))
+        ImageWithStates(character.fruit?.filename, Modifier.width(200.dp))
 
         CharacterInfo(
             label = stringResource(R.string.label_name),
@@ -105,27 +105,37 @@ internal fun Character(character: Character) {
             testTag = "character_status"
         )
         CharacterInfo(
-            label = stringResource(R.string.label_species),
-            value = character.species,
-            testTag = "character_species"
+            label = "Size",
+            value = character.size,
+            testTag = "character_size"
         )
         CharacterInfo(
-            label = stringResource(R.string.label_gender),
-            value = character.gender,
-            testTag = "character_gender"
+            label = "Age",
+            value = character.age,
+            testTag = "character_age"
         )
-        character.origin?.name?.let {
+        CharacterInfo(
+            label = "Bounty",
+            value = character.bounty,
+            testTag = "character_bounty"
+        )
+        CharacterInfo(
+            label = "Job",
+            value = character.job,
+            testTag = "character_job"
+        )
+        character.crew?.name?.let {
             CharacterInfo(
-                label = stringResource(R.string.label_origin),
+                label = "Crew",
                 value = it,
-                testTag = "character_origin"
+                testTag = "character_crew"
             )
         }
-        character.location?.name?.let {
+        character.fruit?.name?.let {
             CharacterInfo(
-                label = stringResource(R.string.label_location),
+                label = "Fruit",
                 value = it,
-                testTag = "character_location"
+                testTag = "character_fruit"
             )
         }
     }
@@ -160,18 +170,19 @@ private fun CharacterInfo(
 @Preview(showBackground = true, device = "id:pixel_7")
 @Composable
 fun DetailsScreenPreview() {
-    RickAndMortyTheme {
+    MyAppTheme {
         DetailsContent(
             DetailsUiState.Success(
                 Character(
                     id = 1,
-                    name = "Rick Sanchez",
-                    status = "Alive",
-                    species = "Human",
-                    gender = "Male",
-                    origin = CharacterOrigin("Earth", null),
-                    location = Location("Earth", null),
-                    image = "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+                    name = "Monkey D Luffy",
+                    size = "174cm",
+                    age = "19 ans",
+                    bounty = "3.000.000.000",
+                    job = "Captain",
+                    status = "vivant",
+                    crew = Crew(id = 1, name = "The Chapeau de Paille crew"),
+                    fruit = Fruit(id = 1, name = "Gum-Gum Fruit", filename = "https://images.api-onepiece.com/fruits/5665e89442022d4c0e7684c650dc6d6b.png")
                 ),
                 true
             )
@@ -185,14 +196,18 @@ fun DetailsScreenPreview() {
 @Preview(showBackground = true)
 @Composable
 fun CharacterPreview() {
-    RickAndMortyTheme {
+    MyAppTheme {
         Character(
             Character(
                 id = 1,
-                name = "Rick Sanchez",
-                status = "Alive",
-                location = Location("Earth", null),
-                image = "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+                name = "Monkey D Luffy",
+                size = "174cm",
+                age = "19 ans",
+                bounty = "3.000.000.000",
+                job = "Captain",
+                status = "vivant",
+                crew = Crew(id = 1, name = "The Chapeau de Paille crew"),
+                fruit = Fruit(id = 1, name = "Gum-Gum Fruit", filename = "https://images.api-onepiece.com/fruits/5665e89442022d4c0e7684c650dc6d6b.png")
             )
         )
     }
