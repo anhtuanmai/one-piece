@@ -1,8 +1,8 @@
 package demo.at.ram.domain.model
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNull
-import org.junit.jupiter.api.Test
+import org.junit.Assert.*
+import org.junit.Test
+
 
 class FruitTest {
 
