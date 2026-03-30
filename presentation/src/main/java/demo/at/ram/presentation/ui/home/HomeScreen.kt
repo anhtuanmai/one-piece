@@ -1,6 +1,7 @@
 package demo.at.ram.presentation.ui.home
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -46,11 +47,13 @@ private fun HomeContent(
     Box(modifier = Modifier.testTag("home_screen")) {
         when (uiState) {
             is HomeUiState.Loading -> {
-                CircularProgressIndicator()
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator()
+                }
             }
 
             is HomeUiState.Error -> {
-                Box(contentAlignment = Alignment.Center) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(text = stringResolve(uiState.error))
                 }
             }
