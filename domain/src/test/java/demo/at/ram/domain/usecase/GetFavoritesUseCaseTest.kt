@@ -36,8 +36,8 @@ class GetFavoritesUseCaseTest {
     fun invoke() = runTest {
         // Given
         val characters = listOf(
-            Character(id = 1, name = "Rick Sanchez"),
-            Character(id = 2, name = "Morty Smith")
+            Character(id = 1, name = "Monkey D Luffy"),
+            Character(id = 2, name = "Roronoa Zoro")
         )
         every { repository.getFavorites() } returns flowOf(characters)
 

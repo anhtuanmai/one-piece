@@ -1,7 +1,9 @@
 package demo.at.ram.data.source.local.entity
 
-import org.junit.Assert.*
-import org.junit.Test
+import demo.at.ram.domain.model.Crew
+import demo.at.ram.domain.model.Fruit
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 
 class CharacterEntityTest {
 
@@ -10,13 +12,14 @@ class CharacterEntityTest {
         // Given
         val expected = CharacterEntity(
             id = 1,
-            name = "Rick Sanchez",
-            status = "Alive",
-            species = "Human",
-            gender = "Male",
-            image = "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-            url = "https://rickandmortyapi.com/api/character/1",
-            created = "2017-11-04T18:48:46.250Z"
+            name = "Monkey D Luffy",
+            status = "vivant",
+            size = "174cm",
+            age = "19 ans",
+            bounty = "3.000.000.000",
+            job = "Captain",
+            crew = Crew(id = 1, name = "The Chapeau de Paille crew"),
+            fruit = Fruit(id = 1, name = "Gum-Gum Fruit", filename = "https://images.api-onepiece.com/fruits/5665e89442022d4c0e7684c650dc6d6b.png")
         )
 
         // When
@@ -26,11 +29,12 @@ class CharacterEntityTest {
         assertEquals(expected.id, domainModel.id)
         assertEquals(expected.name, domainModel.name)
         assertEquals(expected.status, domainModel.status)
-        assertEquals(expected.species, domainModel.species)
-        assertEquals(expected.gender, domainModel.gender)
-        assertEquals(expected.image, domainModel.image)
-        assertEquals(expected.url, domainModel.url)
-        assertEquals(expected.created, domainModel.created)
+        assertEquals(expected.size, domainModel.size)
+        assertEquals(expected.age, domainModel.age)
+        assertEquals(expected.bounty, domainModel.bounty)
+        assertEquals(expected.job, domainModel.job)
+        assertEquals(expected.crew, domainModel.crew)
+        assertEquals(expected.fruit, domainModel.fruit)
 
         // When
         val reverted = CharacterEntity(domainModel)

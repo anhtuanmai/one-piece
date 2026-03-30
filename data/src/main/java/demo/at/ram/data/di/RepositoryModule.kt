@@ -4,10 +4,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import demo.at.ram.data.repository.CharacterRepositoryImpl
+import demo.at.ram.data.repository.OnePieceRepositoryImpl
 import demo.at.ram.data.repository.CompositeCharacterRepositoryImpl
 import demo.at.ram.data.repository.UserDataRepositoryImpl
-import demo.at.ram.domain.repository.CharacterRepository
+import demo.at.ram.domain.repository.OnePieceRepository
 import demo.at.ram.domain.repository.CompositeCharacterRepository
 import demo.at.ram.domain.repository.UserDataRepository
 
@@ -17,8 +17,8 @@ import demo.at.ram.domain.repository.UserDataRepository
 abstract class RepositoryModule {
     @Binds
     abstract fun bindCharacterRepository(
-        characterRepo: CharacterRepositoryImpl
-    ): CharacterRepository
+        characterRepo: OnePieceRepositoryImpl
+    ): OnePieceRepository
 
     @Binds
     abstract fun bindUserDataRepository(

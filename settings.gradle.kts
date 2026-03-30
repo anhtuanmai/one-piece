@@ -22,7 +22,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Rick And Morty"
+rootProject.name = "One Piece"
 include(":data")
 include(":domain")
 include(":presentation")

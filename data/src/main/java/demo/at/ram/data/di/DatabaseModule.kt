@@ -7,8 +7,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import demo.at.ram.data.BuildConfig
 import demo.at.ram.data.source.local.AppDatabase
 import demo.at.ram.data.source.local.dao.CharacterDao
+import demo.at.ram.data.source.local.dao.FruitDao
 import javax.inject.Singleton
 
 @Module
@@ -21,7 +23,7 @@ object DatabaseModule {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            "ram_app_database"
+            "one_piece_database"
         )
             .fallbackToDestructiveMigrationOnDowngrade(false)
             .build()
@@ -30,5 +32,10 @@ object DatabaseModule {
     @Provides
     fun provideCharacterDao(database: AppDatabase): CharacterDao {
         return database.characterDao()
+    }
+
+    @Provides
+    fun provideFruitDao(database: AppDatabase): FruitDao {
+        return database.fruitDao()
     }
 }

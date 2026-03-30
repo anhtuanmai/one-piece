@@ -1,11 +1,13 @@
 package demo.at.ram.presentation.ui.home
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -44,11 +46,13 @@ private fun HomeContent(
     Box(modifier = Modifier.testTag("home_screen")) {
         when (uiState) {
             is HomeUiState.Loading -> {
-                Text(text = "Loading")
+                CircularProgressIndicator()
             }
 
             is HomeUiState.Error -> {
-                Text(text = stringResolve(uiState.error))
+                Box(contentAlignment = Alignment.Center) {
+                    Text(text = stringResolve(uiState.error))
+                }
             }
 
             is HomeUiState.Success -> {

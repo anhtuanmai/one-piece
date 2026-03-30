@@ -2,6 +2,7 @@ package demo.at.ram.data.source.local
 
 import androidx.room.Room
 import demo.at.ram.data.source.local.dao.CharacterDao
+import demo.at.ram.data.source.local.dao.FruitDao
 import demo.at.ram.data.source.local.entity.CharacterEntity
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -17,7 +18,8 @@ class CharacterLocalDataSourceTest {
 
     private lateinit var database: AppDatabase
     private lateinit var characterDao: CharacterDao
-    private lateinit var localDS: CharacterLocalDataSource
+    private lateinit var fruitDao: FruitDao
+    private lateinit var localDS: LocalDataSource
 
     @Before
     fun setupDatabase() {
@@ -29,8 +31,9 @@ class CharacterLocalDataSourceTest {
             .build()
 
         characterDao = database.characterDao()
+        fruitDao = database.fruitDao()
 
-        localDS = CharacterLocalDataSource(characterDao)
+        localDS = LocalDataSource(characterDao, fruitDao)
     }
 
     @Test
@@ -44,8 +47,8 @@ class CharacterLocalDataSourceTest {
         // Given 2
         val random = Random(36).nextLong(99999)
         val expectedCharacters = listOf(
-            CharacterEntity(id = random, name = "Rick Sanchez"),
-            CharacterEntity(id = random + 1, name = "Morty Smith"),
+            CharacterEntity(id = random, name = "Monkey D Luffy"),
+            CharacterEntity(id = random + 1, name = "Roronoa Zoro"),
         )
 
         // When 2

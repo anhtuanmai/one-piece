@@ -4,17 +4,20 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import demo.at.ram.domain.model.Character
+import demo.at.ram.domain.model.Crew
+import demo.at.ram.domain.model.Fruit
 
 @Entity(tableName = CharacterEntity.TABLE_NAME)
 class CharacterEntity(
     @PrimaryKey val id: Long,
     @ColumnInfo(name = "name") val name: String?,
+    @ColumnInfo(name = "size") val size: String? = null,
+    @ColumnInfo(name = "age") val age: String? = null,
+    @ColumnInfo(name = "bounty") val bounty: String? = null,
+    @ColumnInfo(name = "crew") val crew: Crew? = null,
+    @ColumnInfo(name = "fruit") val fruit: Fruit? = null,
+    @ColumnInfo(name = "job") val job: String? = null,
     @ColumnInfo(name = "status") val status: String? = null,
-    @ColumnInfo(name = "species") val species: String? = null,
-    @ColumnInfo(name = "gender") val gender: String? = null,
-    @ColumnInfo(name = "image") val image: String? = null,
-    @ColumnInfo(name = "url") val url: String? = null,
-    @ColumnInfo(name = "created") val created: String? = null,
 ) {
     companion object {
         const val TABLE_NAME = "character_table"
@@ -23,24 +26,26 @@ class CharacterEntity(
     constructor(character: Character) : this(
         id = character.id,
         name = character.name,
+        size = character.size,
+        age = character.age,
+        bounty = character.bounty,
+        crew = character.crew,
+        fruit = character.fruit,
+        job = character.job,
         status = character.status,
-        species = character.species,
-        gender = character.gender,
-        image = character.image,
-        url = character.url,
-        created = character.created,
     )
 
     fun toDomainModel(): Character {
         return Character(
             id = id,
             name = name,
+            size = size,
+            age = age,
+            bounty = bounty,
+            crew = crew,
+            fruit = fruit,
+            job = job,
             status = status,
-            species = species,
-            gender = gender,
-            image = image,
-            url = url,
-            created = created,
         )
     }
 

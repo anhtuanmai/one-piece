@@ -1,10 +1,12 @@
 package demo.at.ram.data.repository
 
-import demo.at.ram.data.source.local.CharacterLocalDataSource
+import demo.at.ram.data.source.local.LocalDataSource
 import demo.at.ram.data.source.local.entity.CharacterEntity
+import demo.at.ram.data.source.local.entity.FruitEntity
 import demo.at.ram.data.source.remote.CharacterRemoteDataSource
 import demo.at.ram.domain.model.Character
-import demo.at.ram.domain.repository.CharacterRepository
+import demo.at.ram.domain.model.Fruit
+import demo.at.ram.domain.repository.OnePieceRepository
 import demo.at.ram.shared.di.ApplicationScope
 import demo.at.ram.shared.dispatcher.Dispatcher
 import demo.at.ram.shared.dispatcher.RamDispatchers
@@ -20,12 +22,12 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
-class CharacterRepositoryImpl @Inject constructor(
+class OnePieceRepositoryImpl @Inject constructor(
     private val remoteDataSource: CharacterRemoteDataSource,
-    private val localDataSource: CharacterLocalDataSource,
-    @ApplicationScope private val applicationScope: CoroutineScope,
-    @Dispatcher(RamDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
-) : CharacterRepository {
+    private val localDataSource: LocalDataSource,
+    @param:ApplicationScope private val applicationScope: CoroutineScope,
+    @param:Dispatcher(RamDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
+) : OnePieceRepository {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     override fun getAllCharacters(): Flow<ResponseResult<List<Character>>> =
@@ -34,9 +36,9 @@ class CharacterRepositoryImpl @Inject constructor(
         }
             .flatMapLatest { wrapper ->
                 Timber.d("getAllCharacters = ${wrapper.javaClass.simpleName}")
-                val characters = wrapper.response?.body()?.results
+                val characters = wrapper.response?.body()
                 if (wrapper.isSuccessful()) {
-                    cache(characters)
+                    cacheCharacters(characters)
                     flow {
                         emit(
                             ResponseResult.success(
@@ -48,6 +50,30 @@ class CharacterRepositoryImpl @Inject constructor(
                 } else {
                     flow {
                         emit(loadCharactersFromDb(wrapper.response?.code()))
+                    }
+                }
+            }
+
+    override fun getAllFruits(): Flow<ResponseResult<List<Fruit>>> =
+        flow {
+            emit(remoteDataSource.getAllFruits())
+        }
+            .flatMapLatest { wrapper ->
+                Timber.d("getAllFruits = ${wrapper.javaClass.simpleName}")
+                val fruits = wrapper.response?.body()
+                if (wrapper.isSuccessful()) {
+                    cacheFruits(fruits)
+                    flow {
+                        emit(
+                            ResponseResult.success(
+                                code = wrapper.response?.code(),
+                                data = fruits ?: emptyList()
+                            )
+                        )
+                    }
+                } else {
+                    flow {
+                        emit(loadFruitsFromDb(wrapper.response?.code()))
                     }
                 }
             }
@@ -65,10 +91,19 @@ class CharacterRepositoryImpl @Inject constructor(
         }
     }
 
-    private fun cache(characters: List<Character>?) =
+    private fun cacheCharacters(characters: List<Character>?) =
         applicationScope.launch(ioDispatcher) {
             characters?.let {
                 localDataSource.saveCharacters(it.map { CharacterEntity(it) })
+            } ?: run {
+                Timber.e("No data found in response")
+            }
+        }
+
+    private fun cacheFruits(characters: List<Fruit>?) =
+        applicationScope.launch(ioDispatcher) {
+            characters?.let {
+                localDataSource.saveFruits(it.map { FruitEntity(it) })
             } ?: run {
                 Timber.e("No data found in response")
             }
@@ -81,6 +116,20 @@ class CharacterRepositoryImpl @Inject constructor(
                 isSuccessful = true,
                 httpCode = null,
                 data = characters,
+                sourceOrigin = SourceOrigin.LOCAL
+            )
+        } else {
+            ResponseResult(isSuccessful = false, httpCode = code, data = null)
+        }
+    }
+
+    private suspend fun loadFruitsFromDb(code: Int?): ResponseResult<List<Fruit>> {
+        val fruits = localDataSource.loadFruits().map { it.toDomainModel() }
+        return if (fruits.isNotEmpty()) {
+            ResponseResult(
+                isSuccessful = true,
+                httpCode = null,
+                data = fruits,
                 sourceOrigin = SourceOrigin.LOCAL
             )
         } else {
