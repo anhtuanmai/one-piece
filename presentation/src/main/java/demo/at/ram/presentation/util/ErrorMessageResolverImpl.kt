@@ -8,7 +8,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class ErrorMessageResolverImpl @Inject constructor(
-    @ApplicationContext private val context: Context
+    @param:ApplicationContext private val context: Context
 ) : ErrorMessageResolver {
 
     override fun resolveErrorMessage(error: AppError): String {
