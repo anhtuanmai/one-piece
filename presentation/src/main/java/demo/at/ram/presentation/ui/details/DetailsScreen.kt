@@ -27,7 +27,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.android.tools.screenshot.PreviewTest
 import demo.at.ram.domain.model.Character
 import demo.at.ram.domain.model.Crew
 import demo.at.ram.domain.model.Fruit
@@ -166,7 +165,6 @@ private fun CharacterInfo(
 }
 
 @ExcludeFromJacocoGeneratedReport
-@PreviewTest
 @Preview(showBackground = true, device = "id:pixel_7")
 @Composable
 fun DetailsScreenPreview() {
