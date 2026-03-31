@@ -5,10 +5,10 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import io.mockk.unmockkAll
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import org.junit.After
+import org.junit.Assert.*
+import org.junit.Before
+import org.junit.Test
 
 class CharacterRemoteDataSourceTest {
 
@@ -17,13 +17,13 @@ class CharacterRemoteDataSourceTest {
 
     private lateinit var characterRemoteDataSource: CharacterRemoteDataSource
 
-    @BeforeEach
+    @Before
     fun setUp() {
         ramService = mockk(relaxed = true)
         characterRemoteDataSource = CharacterRemoteDataSource(ramService)
     }
 
-    @AfterEach
+    @After
     fun tearDown() {
         unmockkAll()
     }

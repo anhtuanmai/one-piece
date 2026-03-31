@@ -9,10 +9,10 @@ import io.mockk.mockk
 import io.mockk.unmockkAll
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import org.junit.After
+import org.junit.Assert.*
+import org.junit.Before
+import org.junit.Test
 
 class GetCharacterUseCaseTest {
 
@@ -21,13 +21,13 @@ class GetCharacterUseCaseTest {
 
     private lateinit var getCharacterUseCase: GetCharacterUseCase
 
-    @BeforeEach
+    @Before
     fun setUp() {
         onePieceRepository = mockk(relaxed = true)
         getCharacterUseCase = GetCharacterUseCase(onePieceRepository)
     }
 
-    @AfterEach
+    @After
     fun tearDown() {
         unmockkAll()
     }

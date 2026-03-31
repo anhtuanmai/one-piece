@@ -4,27 +4,26 @@ import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import demo.at.ram.domain.error.AppError
 import demo.at.ram.presentation.RobolectricExtensionSelfTest
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
+import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
-import tech.apter.junit.jupiter.robolectric.RobolectricExtension
 
-@ExtendWith(RobolectricExtension::class)
+@RunWith(org.robolectric.RobolectricTestRunner::class)
 @Config(application = RobolectricExtensionSelfTest.MyTestApplication::class)
 class ErrorMessageResolverImplTest {
 
     lateinit var errorMessageResolverImpl : ErrorMessageResolverImpl
 
-    @BeforeEach
+    @Before
     fun setUp() {
         val application = ApplicationProvider.getApplicationContext<Context>()
         errorMessageResolverImpl = ErrorMessageResolverImpl(application)
     }
 
-    @AfterEach
+    @After
     fun tearDown() {
     }
 

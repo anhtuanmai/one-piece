@@ -9,9 +9,9 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Test
 
 class GetAllCharactersUseCaseTest {
 
@@ -20,7 +20,7 @@ class GetAllCharactersUseCaseTest {
 
     private lateinit var getAllCharactersUseCase: GetAllCharactersUseCase
 
-    @BeforeEach
+    @Before
     fun setup() {
         onePieceRepository = mockk<OnePieceRepository>()
         getAllCharactersUseCase = GetAllCharactersUseCase(onePieceRepository)

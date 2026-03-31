@@ -9,10 +9,10 @@ import io.mockk.mockk
 import io.mockk.unmockkAll
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import org.junit.After
+import org.junit.Assert.*
+import org.junit.Before
+import org.junit.Test
 
 class GetFavoritesUseCaseTest {
 
@@ -21,13 +21,13 @@ class GetFavoritesUseCaseTest {
 
     private lateinit var useCase: GetFavoritesUseCase
 
-    @BeforeEach
+    @Before
     fun setUp() {
         repository = mockk(relaxed = true)
         useCase = GetFavoritesUseCase(repository)
     }
 
-    @AfterEach
+    @After
     fun tearDown() {
         unmockkAll()
     }

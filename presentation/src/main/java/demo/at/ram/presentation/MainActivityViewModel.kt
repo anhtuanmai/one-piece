@@ -9,7 +9,12 @@ import javax.inject.Inject
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
 ) : ViewModel() {
-    val uiState = MutableStateFlow<MainActivityUiState>(MainActivityUiState.Success)
+
+    fun onScreenRendered() {
+        uiState.value = MainActivityUiState.Success
+    }
+
+    val uiState = MutableStateFlow<MainActivityUiState>(MainActivityUiState.Loading)
 }
 
 sealed interface MainActivityUiState {

@@ -1,5 +1,5 @@
 [versions]
-androidGradlePlugin = "8.12.2"
+androidGradlePlugin = "9.0.0"
 googleServicePlugin = "4.4.3"
 androidTestCompose = "1.8.0"
 androidTools = "31.12.2"
@@ -37,15 +37,14 @@ firebasePerfPlugin = "2.0.1"
 gmsPlugin = "4.4.2"
 googleOss = "17.1.0"
 googleOssPlugin = "0.10.8"
-hilt = "2.56"
+hilt = "2.59.2"
 hiltExt = "1.2.0"
 jacoco = "0.8.14"
-kotlin = "2.2.20"
+kotlin = "2.3.20"
 kotlinxCoroutines = "1.10.1"
 kotlinxDatetime = "0.6.1"
 kotlinxSerializationJson = "1.8.0"
-kapt = "2.2.20"
-ksp = "2.2.20-2.0.4"
+ksp = "2.3.2"
 okhttp = "4.12.0"
 protobuf = "4.29.2"
 protobufPlugin = "0.9.4"
@@ -60,17 +59,13 @@ timber = "5.0.0"
 javapoet = "1.13.0"
 junit4 = "4.13.2"
 androidxTest = "1.7.0"
-androidJunit5 = "1.13.4.0"
-apterJunit5 = "0.9.0"
 espressoCore = "3.7.0"
-junitJupiter = "5.13.4"
 mockk = "1.14.5"
 robolectric = "4.16"
-screenshot = "0.0.1-alpha11"
+screenshot = "0.0.1-alpha13"
 
 [libraries]
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
-junit5-test-compose = { module = "de.mannodermaus.junit5:android-test-compose", version.ref = "androidTestCompose" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
 androidx-benchmark-macro = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "androidxMacroBenchmark" }
@@ -159,9 +154,6 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidxTest"}
 androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidxTest"}
 androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "androidxTest"}
-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junitJupiter" }
-junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junitJupiter" }
-junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junitJupiter" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
 screenshot-validation-api = { group = "com.android.tools.screenshot", name = "screenshot-validation-api", version.ref = "screenshot"}
@@ -180,15 +172,12 @@ room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", vers
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 android-lint = { id = "com.android.lint", version.ref = "androidGradlePlugin" }
-apter-junit5 = { id = "tech.apter.junit5.jupiter.robolectric-extension-gradle-plugin", version.ref = "apterJunit5" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin" }
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServicePlugin" }
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-android-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kapt" }
-mannodermaus-android-junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "androidJunit5" }
 protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
 room = { id = "androidx.room", version.ref = "room" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

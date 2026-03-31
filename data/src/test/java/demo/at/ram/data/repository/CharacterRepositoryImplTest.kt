@@ -17,9 +17,9 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestCoroutineScheduler
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Test
 import retrofit2.Response
 import java.io.IOException
 
@@ -36,7 +36,7 @@ class CharacterRepositoryImplTest {
     private lateinit var testDispatcher: CoroutineDispatcher
     private lateinit var repository: OnePieceRepositoryImpl
 
-    @BeforeEach
+    @Before
     fun setUp() {
         remoteDataSource = mockk<CharacterRemoteDataSource>(relaxed = true)
         localDataSource = mockk<LocalDataSource>(relaxed = true)

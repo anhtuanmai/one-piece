@@ -2,10 +2,10 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.android.ksp)
-//    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt.android)
-    alias(libs.plugins.mannodermaus.android.junit5)
     alias(libs.plugins.serialization)
+
+    // jacoco
     alias(libs.plugins.myapp.android.library.jacoco)
 }
 
@@ -49,7 +49,6 @@ dependencies {
     api(project(":shared"))
 
     ksp(libs.hilt.compiler)
-//    kapt(libs.hilt.compiler)
 
     implementation(libs.hilt.android)
     implementation(libs.gson)
@@ -60,19 +59,15 @@ dependencies {
 
     //Testing
     testImplementation(libs.turbine)
-    testImplementation(libs.junit.jupiter.api)
-    testImplementation(libs.junit.jupiter.engine)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockk)
-    testImplementation(libs.junit.jupiter.api)
-    testImplementation(libs.junit.jupiter.engine)
+    testImplementation(libs.junit4)
     androidTestImplementation(libs.androidx.espresso.core)
 }
 
 //EnableDynamicAgentLoading for Mockk
 afterEvaluate {
     tasks.named<Test>("testDebugUnitTest") {
-        useJUnitPlatform()
         jvmArgs("-XX:+EnableDynamicAgentLoading")
     }
 }

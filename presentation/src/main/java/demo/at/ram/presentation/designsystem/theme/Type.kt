@@ -9,7 +9,7 @@ import androidx.compose.ui.text.style.LineHeightStyle.Trim
 import androidx.compose.ui.unit.sp
 
 /**
- * Rick and Morty typography.
+ * One Piece typography.
  */
 internal val RamTypography = Typography(
     displayLarge = TextStyle(

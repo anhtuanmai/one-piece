@@ -1,18 +1,13 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-
-//    alias(libs.plugins.kotlin.android.ksp)
-    alias(libs.plugins.kotlin.kapt)
-
+    alias(libs.plugins.kotlin.android.ksp)
     alias(libs.plugins.hilt.android)
-    alias(libs.plugins.mannodermaus.android.junit5)
     alias(libs.plugins.room)
-    alias(libs.plugins.apter.junit5)
     alias(libs.plugins.serialization)
     alias(libs.plugins.protobuf)
 
-//    jacoco
+    // jacoco
     alias(libs.plugins.myapp.android.library.jacoco)
 }
 
@@ -94,12 +89,9 @@ androidComponents.beforeVariants {
 dependencies {
     api(project(":domain"))
 
-//    ksp(libs.hilt.compiler)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 
-//    ksp(libs.room.compiler)
-    //noinspection KaptUsageInsteadOfKsp
-    kapt(libs.room.compiler)
+    ksp(libs.room.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.room.runtime)
@@ -115,25 +107,22 @@ dependencies {
     implementation(libs.androidx.dataStore.preferences)
     api(libs.protobuf.kotlin.lite)
     implementation(libs.hilt.android)
+}
 
-
+dependencies {
     //Testing
     testImplementation(libs.turbine)
     testImplementation(libs.kotlinx.coroutines.test)
-    testImplementation(libs.junit.jupiter.api)
-    testImplementation(libs.junit.jupiter.engine)
     testImplementation(libs.mockk)
+    testImplementation(libs.junit4)
     testImplementation(libs.robolectric)
     androidTestImplementation(libs.kotlinx.coroutines.test)
-    androidTestImplementation(libs.junit.jupiter.api)
-    androidTestImplementation(libs.junit.jupiter.engine)
     androidTestImplementation(libs.androidx.espresso.core)
 }
 
 afterEvaluate {
     //EnableDynamicAgentLoading for Mockk
     tasks.named<Test>("testDebugUnitTest") {
-        useJUnitPlatform()
         jvmArgs("-XX:+EnableDynamicAgentLoading")
     }
 }

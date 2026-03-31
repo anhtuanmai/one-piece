@@ -1,8 +1,8 @@
 package demo.at.ram.shared
 
 import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.Test
+import org.junit.Assert.assertEquals
 
 
 class CheckInstrumentedTest {

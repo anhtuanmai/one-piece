@@ -1,11 +1,12 @@
 package demo.at.ram.domain
 
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Test
+import org.junit.Assert
+import org.junit.Assert.assertEquals
+import org.junit.Test
 
 class CheckUnitTest {
     @Test
     fun addition_isCorrect() {
-        Assertions.assertEquals(4, 2 + 2)
+        assertEquals(4, 2 + 2)
     }
 }

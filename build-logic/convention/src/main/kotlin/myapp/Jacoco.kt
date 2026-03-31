@@ -24,7 +24,7 @@ val appExclusions = listOf(
     "demo/at/ram/presentation/designsystem/*.*",    // Design System
     "demo/at/ram/presentation/ui/log/*.*",  // Compose Log
     "demo/at/ram/presentation/AppCore.class",
-    "demo/at/ram/presentation/RickAndMortyApplication.class",
+    "demo/at/ram/presentation/MyApplication.class",
     "**/ComposableSingletons*", // Preview Compose
 
 )

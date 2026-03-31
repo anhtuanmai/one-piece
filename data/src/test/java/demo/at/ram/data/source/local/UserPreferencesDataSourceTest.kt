@@ -11,21 +11,22 @@ import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.io.CleanupMode
-import org.junit.jupiter.api.io.TempDir
+import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
+import org.junit.Before
+import org.junit.Test
+import org.junit.Rule
+import org.junit.rules.TemporaryFolder
 import java.io.File
 
 class UserPreferencesDataSourceTest {
 
-    @TempDir(cleanup = CleanupMode.ALWAYS)
-    private lateinit var tempDir: File
+    @get:Rule
+    val tempDirRule = TemporaryFolder()
+    private val tempDir: java.io.File
+        get() = tempDirRule.root
 
     private val storageName = "test_storage.protobuf"
 
@@ -37,7 +38,7 @@ class UserPreferencesDataSourceTest {
 
     private lateinit var testDispatcher: TestDispatcher
 
-    @BeforeEach
+    @Before
     fun setUp() {
         testDispatcher = StandardTestDispatcher()
         testScope = TestScope(testDispatcher)
@@ -52,30 +53,27 @@ class UserPreferencesDataSourceTest {
         userPreferences = UserPreferencesDataSource(dataStore)
     }
 
-    @AfterEach
+    @After
     fun tearDown() {
         testScope.cancel()
     }
 
     @Test
-    @DisplayName("Get user data with LIGHT theme")
-    fun `Get user data with LIGHT`() = testScope.runTest {
+        fun `Get user data with LIGHT`() = testScope.runTest {
         userPreferences.setDarkTheme(DarkTheme.LIGHT)
         val first = userPreferences.userData.first()
         assertEquals(DarkTheme.LIGHT, first.darkTheme)
     }
 
     @Test
-    @DisplayName("Get user data with DARK theme")
-    fun getDarkTheme() = testScope.runTest {
+        fun getDarkTheme() = testScope.runTest {
         userPreferences.setDarkTheme(DarkTheme.DARK)
         val first = userPreferences.userData.first()
         assertEquals(DarkTheme.DARK, first.darkTheme)
     }
 
     @Test
-    @DisplayName("Modify user data on theme")
-    fun `Modify user data`() = testScope.runTest {
+        fun `Modify user data`() = testScope.runTest {
         userPreferences.setDarkTheme(DarkTheme.LIGHT)
         val first = userPreferences.userData.first()
         assertEquals(DarkTheme.LIGHT, first.darkTheme)
@@ -86,8 +84,7 @@ class UserPreferencesDataSourceTest {
     }
 
     @Test
-    @DisplayName("Set/Unset favorites")
-    fun setUnsetFavorite() = testScope.runTest {
+        fun setUnsetFavorite() = testScope.runTest {
         // Set favorite 1
         userPreferences.setFavorite(1L)
         val firstState = userPreferences.userData.first()

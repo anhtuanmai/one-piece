@@ -10,9 +10,9 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Test
 
 class UserDataRepositoryImplTest {
 
@@ -21,7 +21,7 @@ class UserDataRepositoryImplTest {
 
     lateinit var userDataRepositoryImpl: UserDataRepositoryImpl
 
-    @BeforeEach
+    @Before
     fun setUp() {
         userPreferencesDataSource = mockk(relaxed = true)
 

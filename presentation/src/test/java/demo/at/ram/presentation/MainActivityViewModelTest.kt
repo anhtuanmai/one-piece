@@ -1,20 +1,20 @@
 package demo.at.ram.presentation
 
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import org.junit.After
+import org.junit.Assert.*
+import org.junit.Before
+import org.junit.Test
 
 class MainActivityViewModelTest {
 
     val viewModel = MainActivityViewModel()
 
-    @BeforeEach
+    @Before
     fun setUp() {
 //        TODO("Not yet implemented")
     }
 
-    @AfterEach
+    @After
     fun tearDown() {
 //        TODO("Not yet implemented")
     }

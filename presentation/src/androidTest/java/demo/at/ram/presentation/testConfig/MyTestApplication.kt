@@ -5,4 +5,4 @@ import demo.at.ram.presentation.AppCore
 
 @Suppress("unused")
 @CustomTestApplication(AppCore::class)
-interface RickAndMortyTestApplication
+interface MyTestApplication

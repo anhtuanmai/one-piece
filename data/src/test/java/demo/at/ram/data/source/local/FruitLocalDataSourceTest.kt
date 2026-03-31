@@ -1,26 +1,28 @@
 package demo.at.ram.data.source.local
 
+import android.app.Application
 import androidx.room.Room
 import demo.at.ram.data.source.local.dao.FruitDao
 import demo.at.ram.data.source.local.entity.FruitEntity
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
+import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
 import org.robolectric.RuntimeEnvironment
-import tech.apter.junit.jupiter.robolectric.RobolectricExtension
+import org.robolectric.annotation.Config
 import kotlin.random.Random
 
-@ExtendWith(RobolectricExtension::class)
+@RunWith(org.robolectric.RobolectricTestRunner::class)
+@Config(application = FruitLocalDataSourceTest.MyTestApplication::class)
 class FruitLocalDataSourceTest {
 
     private lateinit var database: AppDatabase
     private lateinit var fruitDao: FruitDao
     private lateinit var localDS: LocalDataSource
 
-    @BeforeEach
+    @Before
     fun setupDatabase() {
         database = Room.inMemoryDatabaseBuilder(
             RuntimeEnvironment.getApplication(),
@@ -31,6 +33,11 @@ class FruitLocalDataSourceTest {
 
         fruitDao = database.fruitDao()
         localDS = LocalDataSource(database.characterDao(), fruitDao)
+    }
+
+    @After
+    fun closeDatabase() {
+        database.close()
     }
 
     @Test
@@ -56,8 +63,12 @@ class FruitLocalDataSourceTest {
         assertEquals(expectedFruits, fruits)
     }
 
-    @AfterEach
-    fun closeDatabase() {
-        database.close()
+    class MyTestApplication : Application() {
+        internal var onCreateWasCalled = false
+
+        override fun onCreate() {
+            this.onCreateWasCalled = true
+        }
     }
+
 }

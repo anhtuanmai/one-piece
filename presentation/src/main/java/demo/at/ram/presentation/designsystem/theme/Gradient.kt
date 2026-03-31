@@ -5,7 +5,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 /**
- * A class to model gradient color values for Rick and Morty.
+ * A class to model gradient color values for One Piece.
  *
  * @param top The top gradient color to be rendered.
  * @param bottom The bottom gradient color to be rendered.

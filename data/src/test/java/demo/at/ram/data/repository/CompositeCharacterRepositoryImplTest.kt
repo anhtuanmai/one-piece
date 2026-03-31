@@ -9,9 +9,9 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Test
 
 class CompositeCharacterRepositoryImplTest {
 
@@ -23,7 +23,7 @@ class CompositeCharacterRepositoryImplTest {
 
     lateinit var compositeImpl: CompositeCharacterRepositoryImpl
 
-    @BeforeEach
+    @Before
     fun setUp() {
         onePieceRepository = mockk<OnePieceRepository>(relaxed = true)
         userDataRepository = mockk<UserDataRepository>(relaxed = true)
