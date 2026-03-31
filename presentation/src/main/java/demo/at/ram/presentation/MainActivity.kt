@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
@@ -16,6 +17,7 @@ import demo.at.ram.data.util.NetworkMonitor
 import demo.at.ram.presentation.ui.RamApp
 import demo.at.ram.presentation.ui.rememberAppState
 import demo.at.ram.presentation.designsystem.theme.MyAppTheme
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -37,6 +39,13 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val appState = rememberAppState(networkMonitor)
+
+            var count = 0
+            SideEffect {
+                count++
+                Timber.i("MainActivity : SideEffect $count")
+                viewModel.onScreenRendered()
+            }
 
             MyAppTheme {
                 RamApp(
