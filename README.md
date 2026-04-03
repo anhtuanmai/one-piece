@@ -34,7 +34,8 @@ The goal is clarity over complexity: readable code, documented decisions, and pr
 **Testing**
 - JUnit4, JUnit5, MockK
 - Robolectric
-- Espresso 
+- Espresso
+- ScreenshotTest
   
 **Code Coverage by Jacoco**
 
