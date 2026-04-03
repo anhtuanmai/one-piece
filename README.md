@@ -4,9 +4,9 @@
 Modern Android development showcase with Clean Architecture and Jetpack Compose
 
 ## 📱 About
-This repository demonstrates how to structure Android features using Clean Architecture, MVVM, and unidirectional data flow.​
-The UI is built with Jetpack Compose and powered by Kotlin Coroutines/Flow, while dependency management is handled via Hilt to keep modules decoupled and testable.​
-The goal is clarity over complexity: readable code, documented decisions, and practical patterns you can reuse in production apps.
+This repository is an intentionally small-scoped demo — its purpose is to showcase how to structure Android features cleanly: Clean Architecture, MVVM, unidirectional data flow, Jetpack Compose, Coroutines/Flow, and Hilt for dependency injection.
+
+**Scope note**: In production apps with hundreds of modules, build performance becomes a first-class concern. For those contexts, I apply dedicated Gradle caching strategies (local + remote build cache, configuration cache, parallel execution, fine-grained api/implementation splits) to keep CI and local build times manageable. That layer of complexity is intentionally absent here — keeping the focus on architecture patterns, not build engineering.
 
 ## ✨ Features
 - Browse a list of One Piece characters and Devil Fruits fetched from the One Piece API.
