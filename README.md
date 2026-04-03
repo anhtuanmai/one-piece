@@ -18,7 +18,7 @@ This repository is an intentionally small-scoped demo — its purpose is to show
 
 **Architecture & Patterns**
 - Clean Architecture (Domain/Data/Presentation layers)
-- MVVM with Repository pattern
+- MVVM/MVI with Repository pattern + UI State
 - Dependency Injection (Hilt/Dagger)
 
 **UI & UX**
